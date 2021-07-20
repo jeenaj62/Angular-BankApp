@@ -1,0 +1,20 @@
+
+<div class="row" >
+    <div class="col-4"></div>
+    <div class="col-4">
+        <div class="card"  style="width: 18rem;margin-top:90px;background-color: cyan;">
+            <div class="card-body">
+              <h3 class="card-title">Login</h3>
+            <h5 style="text-align: center;">{{aim}}</h5>
+               <input type="text" id="username" [value]="accnum" class="form-control" style="margin-bottom: 5px;" (change)="accChange($event)" placeholder="Username">
+               <input type="password" id="password" class="form-control" style="margin-bottom: 5px;" (change)="pswdChange($event)" placeholder="password">
+               <div class="d-grid gap-2">
+               <button (click)="Login()" type="submit"  class="btn btn-primary" >Login</button>
+               </div>
+            </div>
+          </div>
+    </div>
+
+    <div class="col-4"></div>
+</div>
+
