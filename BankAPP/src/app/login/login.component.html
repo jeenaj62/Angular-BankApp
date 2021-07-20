@@ -6,10 +6,10 @@
             <div class="card-body">
               <h3 class="card-title">Login</h3>
             <h5 style="text-align: center;">{{aim}}</h5>
-               <input type="text" id="username" [value]="accnum" class="form-control" style="margin-bottom: 5px;" (change)="accChange($event)" placeholder="Username">
-               <input type="password" id="password" class="form-control" style="margin-bottom: 5px;" (change)="pswdChange($event)" placeholder="password">
+               <input type="text" id="username" [value]="accnum" class="form-control" style="margin-bottom: 5px;" #acno placeholder="Username">
+               <input type="password" id="password" class="form-control" style="margin-bottom: 5px;" #pswd placeholder="password">
                <div class="d-grid gap-2">
-               <button (click)="Login()" type="submit"  class="btn btn-primary" >Login</button>
+               <button (click)="Login(acno,pswd)" type="submit"  class="btn btn-primary" >Login</button>
                </div>
             </div>
           </div>
