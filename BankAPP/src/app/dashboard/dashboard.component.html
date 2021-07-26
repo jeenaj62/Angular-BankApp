@@ -1,0 +1,51 @@
+<div class="container">
+    <h2 style="text-align: center;">Welcome User</h2>
+<div class="row" >
+    <div class="col-4"></div>
+    <div class="col-4">
+        <div class="main">
+         
+              <h4 style="color: red;">Deposit Form</h4>
+              <form (ngSubmit)="deposit()">
+
+               <input type="text" id="accno" name="acno"  class="form-control" [(ngModel)]="acno" style="margin-bottom: 5px;"  placeholder="Account Number">
+               <input type="password" id="password" name="pswd" class="form-control" [(ngModel)]="pswd" style="margin-bottom: 5px;"  placeholder="password">
+               <input type="text" id="amount" name="amount"  class="form-control" [(ngModel)]="amount" style="margin-bottom: 5px;"  placeholder="Amount">
+               <div class="d-grid gap-2">
+               <button  type="submit" value="deposit"  class="btn btn-primary" >Deposit</button>
+               </div>
+              </form>
+          
+            
+          </div>
+    </div>
+
+    <div class="col-4"></div>
+</div>
+</div>
+<div class="container">
+<div class="row" >
+    <div class="col-4"></div>
+    <div class="col-4">
+        <div class="main">
+         
+              <h4 style="color: red;">Withdraw Form</h4>
+              <form (ngSubmit)="Withdraw()">
+
+               <input type="text" id="accno1" name="acno1"  class="form-control" [(ngModel)]="acno1" style="margin-bottom: 5px;"  placeholder="Account Number">
+               <input type="password" id="password1" name="pswd1" class="form-control" [(ngModel)]="pswd1" style="margin-bottom: 5px;"  placeholder="password">
+               <input type="text" id="amount1" name="amount1"  class="form-control" [(ngModel)]="amount1" style="margin-bottom: 5px;"  placeholder="Amount">
+               <div class="d-grid gap-2">
+               <button  type="submit" value="Withdraw"  class="btn btn-primary" >Withdraw</button>
+               </div>
+              </form>
+          
+            
+          </div>
+    </div>
+
+    <div class="col-4"></div>
+</div>
+</div>
+
+

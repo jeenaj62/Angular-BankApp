@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-login',
@@ -7,38 +9,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
   aim="Your Banking Partner"
-  accnum="Please enter account number"
+ 
 
-  acno=""
+  acno="Please enter account number"
   pswd=""
-  user:any={
-    1000:{accno:1000,uname:"jeena",password:"userone",balance:3000},
-    1001:{accno:1001,uname:"Anju",password:"usertwo",balance:5000},
-    1002:{accno:1002,uname:"Ashna",password:"userthree",balance:6000},
-    1003:{accno:1003,uname:"Akhila",password:"userfour",balance:7000}
-  }
 
-  constructor() { }
+
+  constructor(private router:Router,private ds:DataService) { }
 
   ngOnInit(): void {
   }
  
   
-  Login(a:any,p:any){
-    var acno=a.value;
-    var pswd=p.value;
-    let accDetails=this.user;
-    if(acno in accDetails)
-    {
-      if(pswd == accDetails[acno]["password"]){
-       alert("Login Sucessful")
-      }
-      else{
-        alert("Incorrect Password")
-      }
+  Login(){
+    var acno=this.acno;
+    var pswd=this.pswd;
+    var result=this.ds.Login(acno,pswd)
+    if(result){
+      this.router.navigateByUrl("dashboard")
     }
     else{
-    alert("Invalid User")
-  }
-  }
+      this.router.navigateByUrl("")
+    }
+    
+}
 }

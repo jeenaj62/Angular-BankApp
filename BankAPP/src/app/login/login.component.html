@@ -1,18 +1,21 @@
-
 <div class="row" >
     <div class="col-4"></div>
     <div class="col-4">
-        <div class="card"  style="width: 18rem;margin-top:90px;background-color: cyan;">
-            <div class="card-body">
-              <h3 class="card-title">Login</h3>
+        <div class="main" >
+         
+              <h3>Login</h3>
             <h5 style="text-align: center;">{{aim}}</h5>
-               <input type="text" id="username" [value]="accnum" class="form-control" style="margin-bottom: 5px;" #acno placeholder="Username">
-               <input type="password" id="password" class="form-control" style="margin-bottom: 5px;" #pswd placeholder="password">
+            <form (ngSubmit)="Login()">
+               <input type="text" id="username" name="acno"  class="form-control" [(ngModel)]="acno" style="margin-bottom: 5px;"  placeholder="Username">
+               <input type="password" id="password" name="pswd" class="form-control" [(ngModel)]="pswd" style="margin-bottom: 5px;"  placeholder="password">
                <div class="d-grid gap-2">
-               <button (click)="Login(acno,pswd)" type="submit"  class="btn btn-primary" >Login</button>
+               <button type="submit"  class="btn btn-primary" >Login</button>
                </div>
+              </form>
+              <div class="line"></div>
+              <a class="textfp" routerLink="register">Sign Up</a>
             </div>
-          </div>
+         
     </div>
 
     <div class="col-4"></div>
