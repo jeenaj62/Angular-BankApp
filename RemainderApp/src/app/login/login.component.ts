@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { DataService } from '../services/data.service';
+import { DataService } from 'src/services/data.service';
 
 @Component({
   selector: 'app-login',
@@ -9,27 +9,22 @@ import { DataService } from '../services/data.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  aim="Your Banking Partner"
- 
-
-  acno="Please enter account number"
-  pswd=""
+  uid="please enter userid"
+  pass=""
   loginForm=this.fb.group({
-    acno:['',[Validators.required,Validators.minLength(4),Validators.pattern('[0-9]*')]],
-    pswd:['',[Validators.required,Validators.pattern('[0-9A-Za-z]*')]]
+    uid:['',[Validators.required,Validators.pattern('[0-9]*')]],
+    pass:['',[Validators.required,Validators.pattern('[0-9A-Za-z]*')]]
   })
-
   constructor(private router:Router,private ds:DataService,private fb:FormBuilder) { }
+
 
   ngOnInit(): void {
   }
- 
-  
   Login(){
     if(this.loginForm.valid){
-      var acno=this.loginForm.value.acno;
-      var pswd=this.loginForm.value.pswd;
-      var result=this.ds.Login(acno,pswd)
+      var uid=this.loginForm.value.uid;
+      var pass=this.loginForm.value.pass;
+      var result=this.ds.Login(uid,pass)
       if(result){
         this.router.navigateByUrl("dashboard")
       }

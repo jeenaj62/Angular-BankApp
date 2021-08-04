@@ -1,16 +1,22 @@
 <div class="container">
-    <h2 style="text-align: center;">Welcome User</h2>
+    <h2 style="text-align: center;">Welcome {{user}}</h2>
+    <a routerLink="/transaction">Transcation Histroy</a>
+
 <div class="row" >
     <div class="col-4"></div>
     <div class="col-4">
         <div class="main">
          
               <h4 style="color: red;">Deposit Form</h4>
-              <form (ngSubmit)="deposit()">
+              
+              <form [formGroup]="depositForm" (ngSubmit)="deposit()">
 
-               <input type="text" id="accno" name="acno"  class="form-control" [(ngModel)]="acno" style="margin-bottom: 5px;"  placeholder="Account Number">
-               <input type="password" id="password" name="pswd" class="form-control" [(ngModel)]="pswd" style="margin-bottom: 5px;"  placeholder="password">
-               <input type="text" id="amount" name="amount"  class="form-control" [(ngModel)]="amount" style="margin-bottom: 5px;"  placeholder="Amount">
+               <input type="text" id="accno" name="acno"  class="form-control" formControlName="acno" style="margin-bottom: 5px;"  placeholder="Account Number">
+               <div *ngIf="(this.depositForm.get('acno')?.touched || this.depositForm.get('acno')?.dirty)&& this.depositForm.get('acno')?.errors" class="error">Invalid Username</div>
+               <input type="password" id="password" name="pswd" class="form-control" formControlName="pswd" style="margin-bottom: 5px;"  placeholder="password">
+               <div *ngIf="(this.depositForm.get('pswd')?.touched || this.depositForm.get('pswd')?.dirty)&& this.depositForm.get('pswd')?.errors" class="error">Invalid Password</div>
+               <input type="text" id="amount" name="amount"  class="form-control" formControlName="amount" style="margin-bottom: 5px;"  placeholder="Amount">
+               <div *ngIf="(this.depositForm.get('amount')?.touched || this.depositForm.get('amount')?.dirty)&& this.depositForm.get('amount')?.errors" class="error">Invalid Amount</div>
                <div class="d-grid gap-2">
                <button  type="submit" value="deposit"  class="btn btn-primary" >Deposit</button>
                </div>
@@ -30,11 +36,14 @@
         <div class="main">
          
               <h4 style="color: red;">Withdraw Form</h4>
-              <form (ngSubmit)="Withdraw()">
+              <form [formGroup]="withdrawForm"  (ngSubmit)="Withdraw()">
 
-               <input type="text" id="accno1" name="acno1"  class="form-control" [(ngModel)]="acno1" style="margin-bottom: 5px;"  placeholder="Account Number">
-               <input type="password" id="password1" name="pswd1" class="form-control" [(ngModel)]="pswd1" style="margin-bottom: 5px;"  placeholder="password">
-               <input type="text" id="amount1" name="amount1"  class="form-control" [(ngModel)]="amount1" style="margin-bottom: 5px;"  placeholder="Amount">
+               <input type="text" id="accno1" name="acno1"  class="form-control" formControlName="acno1" style="margin-bottom: 5px;"  placeholder="Account Number">
+               <div *ngIf="(this.withdrawForm.get('acno1')?.touched || this.withdrawForm.get('acno1')?.dirty)&& this.withdrawForm.get('acno1')?.errors" class="error">Invalid Username</div>
+               <input type="password" id="password1" name="pswd1" class="form-control" formControlName="pswd1" style="margin-bottom: 5px;"  placeholder="password">
+               <div *ngIf="(this.withdrawForm.get('pswd1')?.touched || this.withdrawForm.get('pswd1')?.dirty)&& this.withdrawForm.get('pswd1')?.errors" class="error">Invalid Password</div>
+               <input type="text" id="amount1" name="amount1"  class="form-control" formControlName="amount1" style="margin-bottom: 5px;"  placeholder="Amount">
+               <div *ngIf="(this.withdrawForm.get('amount1')?.touched || this.withdrawForm.get('amount1')?.dirty)&& this.withdrawForm.get('amount1')?.errors" class="error">Invalid Amount</div>
                <div class="d-grid gap-2">
                <button  type="submit" value="Withdraw"  class="btn btn-primary" >Withdraw</button>
                </div>

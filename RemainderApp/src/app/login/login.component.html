@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="row">
+        <h1 style="text-align: center; color: blue;">Login</h1>
+        <form [formGroup]="loginForm" (ngSubmit)="Login()">
+        <input type="text" class="form-control" style="margin-bottom: 5px;" name="uid" placeholder="UserId" formControlName="uid">
+        <div *ngIf="(this.loginForm.get('uid')?.touched || this.loginForm.get('uid')?.dirty)&& this.loginForm.get('uid')?.errors" class="error">Invalid UserId</div>
+        <input type="password" class="form-control" style="margin-bottom: 5px;" name="pass" placeholder="password" formControlName="pass">
+        <div *ngIf="(this.loginForm.get('pass')?.touched || this.loginForm.get('pass')?.dirty)&& this.loginForm.get('pass')?.errors" class="error">Invalid Password</div>
+        <button type="submit" class="btn btn-primary" style="margin-bottom: 5px;">Login</button>
+    </form>
+    <div class="line">
+        <a routerLink="register">Sign Up</a>
+    </div>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+<body>
+    <h1>View All Remainder</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Event</th>&nbsp;&nbsp;&nbsp;
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor=" let remainder of remainders">
+                <th>{{remainder.event}}</th>&nbsp;&nbsp;&nbsp;
+                <th>{{remainder.date}}</th>
+            </tr>
+            
+        </tbody>
+    </table>
+    <br><br>
+    <a routerLink="/dashboard">Home</a>
+</body>

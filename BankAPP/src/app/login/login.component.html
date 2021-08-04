@@ -5,9 +5,11 @@
          
               <h3>Login</h3>
             <h5 style="text-align: center;">{{aim}}</h5>
-            <form (ngSubmit)="Login()">
-               <input type="text" id="username" name="acno"  class="form-control" [(ngModel)]="acno" style="margin-bottom: 5px;"  placeholder="Username">
-               <input type="password" id="password" name="pswd" class="form-control" [(ngModel)]="pswd" style="margin-bottom: 5px;"  placeholder="password">
+            <form [formGroup]="loginForm" (ngSubmit)="Login()">
+               <input type="text" id="username" name="acno"  class="form-control" formControlName="acno" style="margin-bottom: 5px;"  placeholder="Username">
+               <div *ngIf="(this.loginForm.get('acno')?.touched || this.loginForm.get('acno')?.dirty)&& this.loginForm.get('acno')?.errors" class="error">Invalid Account Number</div>
+               <input type="password" id="password" name="pswd" class="form-control" formControlName="pswd" style="margin-bottom: 5px;"  placeholder="password">
+               <div *ngIf="(this.loginForm.get('pswd')?.touched || this.loginForm.get('pswd')?.dirty)&& this.loginForm.get('pswd')?.errors" class="error">Invalid Password</div>
                <div class="d-grid gap-2">
                <button type="submit"  class="btn btn-primary" >Login</button>
                </div>

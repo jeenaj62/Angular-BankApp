@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="row">
+        <h3 style="text-align: center;color: red;">Welcome {{user}}</h3>
+        <h5 style="text-align: center; color: blue;">Remainder Form</h5>
+ 
+        <form [formGroup]="remForm" (ngSubmit)="AddRemainder()">
+        <input type="text" class="form-control" style="margin-bottom: 5px;" name="uid" placeholder="UserId" formControlName="uid">
+        <div *ngIf="(this.remForm.get('uid')?.touched || this.remForm.get('uid')?.dirty)&& this.remForm.get('uid')?.errors" class="error">Invalid UserId</div>
+        <input type="text" class="form-control" style="margin-bottom: 5px;" name="event" placeholder="Event" formControlName="event">
+        <div *ngIf="(this.remForm.get('event')?.touched || this.remForm.get('event')?.dirty)&& this.remForm.get('event')?.errors" class="error">Invalid Event</div>
+        <input type="password" class="form-control" style="margin-bottom: 5px;" name="pass" placeholder="password" formControlName="pass">
+        <div *ngIf="(this.remForm.get('pass')?.touched || this.remForm.get('pass')?.dirty)&& this.remForm.get('pass')?.errors" class="error">Invalid Password</div>
+        <button type="submit" class="btn btn-primary" style="margin-bottom: 5px;">Add Remainder</button>
+    </form>
+    <a routerLink="/remainder">View All Remainder</a>
+    </div>
+</div>
+
+
