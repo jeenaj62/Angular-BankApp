@@ -8,6 +8,7 @@ import { RegisterComponent } from './register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ViewRemainderComponent } from './view-remainder/view-remainder.component';
+import { EventComponent } from './event/event.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { ViewRemainderComponent } from './view-remainder/view-remainder.componen
     LoginComponent,
     RegisterComponent,
     DashboardComponent,
-    ViewRemainderComponent
+    ViewRemainderComponent,
+    EventComponent
   ],
   imports: [
     BrowserModule,

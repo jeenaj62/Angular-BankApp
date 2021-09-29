@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
-
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+const options={
+  withCredentials:true
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -7,14 +11,14 @@ export class DataService {
   currentUid=""
   currentUser=""
 user:any={
-1:{uid:1,uname:"Jeena",password:"jeena123",remainder:[]},
-2:{uid:2,uname:"Anu",password:"anu123",remainder:[]},
-3:{uid:3,uname:"Ashna",password:"ash123",remainder:[]},
-4:{uid:4,uname:"Anju",password:"anju123",remainder:[]},
-5:{uid:5,uname:"Jeeva",password:"jeeva123",remainder:[]},    
+1:{uid:1,uname:"Jeena",password:"jeena123",event:[]},
+2:{uid:2,uname:"Anu",password:"anu123",event:[]},
+3:{uid:3,uname:"Ashna",password:"ash123",event:[]},
+4:{uid:4,uname:"Anju",password:"anju123",event:[]},
+5:{uid:5,uname:"Jeeva",password:"jeeva123",event:[]},    
 }
 
-  constructor() {
+  constructor(private http:HttpClient) {
     this.getDetails()
    }
   saveDetails(){
@@ -38,69 +42,35 @@ user:any={
     }
    
   }
-  getRemainder(){
-    return this.user[this.currentUid].remainder
+  getRemainder(uid:any){
+    const data={
+      uid  
+     }
+    return this.http.post(environment.apiUrl+"/remainder",data,options)
   }
+ 
   register(uid:any,uname:any,password:any){
-    let accDetails=this.user
-    if(uid in accDetails){
-      return false;
+    const data={
+      uid,
+      uname,
+      password
     }
-    else{
-      accDetails[uid]={
-        uid,
-        uname,
-        password,
-        remainder:[]
-      }
-      
-      this.saveDetails()
-      return true
+    return this.http.post(environment.apiUrl+"/register",data)
+   }
+   Login(uid:any,password:any){
+    const data={
+     uid,
+     password  
     }
-  }
-  Login(uid:any,pass:any){
-    let accDetails=this.user
-    if(uid in accDetails)
-    {
-      if(pass == accDetails[uid]["password"]){  
-        this.currentUser=accDetails[uid]["uname"] 
-        this.currentUid=uid 
-      this.saveDetails()
-       alert("Login Successful")
-       return true
-     
-      }
-      else{
-        alert("Incorrect Password")
-        return false
-      }
+    return this.http.post(environment.apiUrl+"/login",data,options)
     }
-    else{
-    alert("Invalid User")
-    return false
-  }
-  }
   
-  Addremainder(uid:any,pass:any,event:any){
-    let accDetails=this.user
-   if(uid in accDetails){
-    if(pass == accDetails[uid]["password"]){
-
-    accDetails[uid].remainder.push({
-        event:event,
-       date:"30-07-2021"
-     })
-      this.saveDetails()
-      return accDetails[uid].remainder
-    }
-    else{
-      alert("Incorrect Password")
-      return false
-    }
-   }
-   else{
-    alert("Invalid User")
-    return false
-   }
-   }
+  
+  Addremainder(event:any,date:any){
+    const data={
+      event,
+      date  
+     }
+     return this.http.post(environment.apiUrl+"/event",data,options)
+     }
   }

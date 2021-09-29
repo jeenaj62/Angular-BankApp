@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="row">
+        <h3 style="text-align: center;color: red;">Welcome {{user}}</h3>
+        <h5 style="text-align: center; color: blue;">Remainder Form</h5>
+ 
+        <form [formGroup]="remForm" (ngSubmit)="AddRemainder()">
+        <input type="text" class="form-control" style="margin-bottom: 5px;" name="date" placeholder="Date" formControlName="date">
+        <div *ngIf="(this.remForm.get('date')?.touched || this.remForm.get('date')?.dirty)&& this.remForm.get('date')?.errors" class="error">Invalid Event Date</div>
+        <input type="text" class="form-control" style="margin-bottom: 5px;" name="event" placeholder="Event" formControlName="event">
+        <div *ngIf="(this.remForm.get('event')?.touched || this.remForm.get('event')?.dirty)&& this.remForm.get('event')?.errors" class="error">Invalid Event</div>
+       
+        <button type="submit" class="btn btn-primary" style="margin-bottom: 5px;">Add Remainder</button><br>
+        <button type="button" class="btn btn-danger" style="margin-bottom: 5px;">Delete</button><br>
+        <button type="button" class="btn btn-success" style="margin-bottom: 5px;">Update</button>
+    </form>
+    <a routerLink="/dashboard">Home</a>
+    </div>
+</div>
+
+

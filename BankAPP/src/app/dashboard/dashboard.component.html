@@ -1,5 +1,5 @@
 <div class="container">
-    <h2 style="text-align: center;">Welcome {{user}}</h2>
+ <h2 style="text-align: center;">Welcome {{userName}}</h2>
     <a routerLink="/transaction">Transcation Histroy</a>
 
 <div class="row" >
@@ -8,7 +8,6 @@
         <div class="main">
          
               <h4 style="color: red;">Deposit Form</h4>
-              
               <form [formGroup]="depositForm" (ngSubmit)="deposit()">
 
                <input type="text" id="accno" name="acno"  class="form-control" formControlName="acno" style="margin-bottom: 5px;"  placeholder="Account Number">
@@ -54,7 +53,13 @@
     </div>
 
     <div class="col-4"></div>
+    </div>
+    <br>
+    <app-deleteconfirmation (onCancel)="onCancel()" (onDelete)="onDelete($event)" [item]="accno"></app-deleteconfirmation>
+    <br>
+    <br>
+    <button id="b1" class="btn btn-danger" (click)="DeleteAcc()">Delete Account</button>
 </div>
-</div>
+
 
 

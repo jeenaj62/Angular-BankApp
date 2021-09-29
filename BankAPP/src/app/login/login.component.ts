@@ -29,14 +29,20 @@ export class LoginComponent implements OnInit {
     if(this.loginForm.valid){
       var acno=this.loginForm.value.acno;
       var pswd=this.loginForm.value.pswd;
-      var result=this.ds.Login(acno,pswd)
+      this.ds.Login(acno,pswd)
+      .subscribe((result:any)=>{
       if(result){
+        alert(result.message)
+        localStorage.setItem("userName",result.userName)
+        localStorage.setItem("currentAcc",result.currentAcc)
         this.router.navigateByUrl("dashboard")
       }
-      else{
-        this.router.navigateByUrl("")
+    },
+    (result)=>{
+     alert(result.error.message)
       }
-    }
+      )
+  }
 else{
   alert("Invalid Forms")
 }

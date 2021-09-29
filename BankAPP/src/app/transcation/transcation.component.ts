@@ -8,9 +8,22 @@ import { DataService } from '../services/data.service';
 })
 export class TranscationComponent implements OnInit {
   transcations:any
-
+  acno:any
   constructor(public ds:DataService) { 
-    this.transcations=this.ds.getTranscation()
+   this.acno=localStorage.getItem("currentAcc")
+   this.ds.getTranscation(this.acno)
+    .subscribe((result:any)=>{
+      if(result){
+        console.log(result.transcation)
+        this.transcations=result.transcation
+      }
+    },
+    (result)=>{
+      alert(result.error.message)
+    }
+    )
+    console.log(this.transcations);
+    
   }
 
   ngOnInit(): void {

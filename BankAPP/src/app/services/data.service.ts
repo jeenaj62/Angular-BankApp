@@ -1,5 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
+import { environment } from 'src/environments/environment';
+const options={
+  withCredentials:true
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -13,8 +17,8 @@ export class DataService {
     1003:{acno:1003,uname:"Akhila",password:"userfour",balance:7000,transaction:[]}
   }
 
-  constructor() { 
-    this.getDetails()
+  constructor(private http:HttpClient) { 
+    // this.getDetails()
   }
   saveDetails(){
     localStorage.setItem("user",JSON.stringify(this.user))
@@ -36,104 +40,45 @@ export class DataService {
       this.currentAcc=JSON.parse(localStorage.getItem("currentAcc") || '')
     }
   }
-  getTranscation(){
-    return this.user[this.currentAcc].transaction
+  getTranscation(acno:any){
+    const data={
+      acno  
+     }
+    return this.http.post(environment.apiUrl+"/transcation",data,options)
   }
   register(acno:any,uname:any,password:any){
-    let accDetails=this.user
-    if(acno in accDetails){
-      return false;
-    }
-    else{
-      accDetails[acno]={
-        acno,
-        uname,
-        password,
-        balance:0,
-        transaction:[]
-      }
-      //console.log(accDetails);
-      
-      this.saveDetails()
-      return true
-    }
+   const data={
+     acno,
+     uname,
+     password
+   }
+   return this.http.post(environment.apiUrl+"/register",data)
   }
   Withdraw(acno:any,pswd:any,amt:any){
-    var amount=parseInt(amt)
-    let accDetails=this.user
-   if(acno in accDetails){
-    if(pswd == accDetails[acno]["password"]){
-      if(accDetails[acno]["balance"]>amount){
-      accDetails[acno]["balance"]-=amount
-      accDetails[acno].transaction.push({
-        amount:amount,
-       type:"DEBIT"
-     })
-     
-      this.saveDetails()
-      return accDetails[acno]["balance"]
-    }
-    else{
-      alert("Insufficient Balance")
-      return false
-    }
-  }
-    else{
-      alert("Incorrect Password")
-      return false
-    }
-   }
-   else{
-    alert("Invalid User")
-    return false
-   }
+    const data={
+      acno,
+      pswd,
+      amt 
+     }
+     return this.http.post(environment.apiUrl+"/withdraw",data,options)  
    }
   deposit(acno:any,pswd:any,amt:any){
-    var amount=parseInt(amt)
-    let accDetails=this.user
-   if(acno in accDetails){
-    if(pswd == accDetails[acno]["password"]){
-      accDetails[acno]["balance"]+=amount
-
-    accDetails[acno].transaction.push({
-        amount:amount,
-       type:"CREDIT"
-     })
-  //  console.log( accDetails[acno].transcation)
-      this.saveDetails()
-      return accDetails[acno]["balance"]
-    }
-    else{
-      alert("Incorrect Password")
-      return false
-    }
-   }
-   else{
-    alert("Invalid User")
-    return false
-   }
+    const data={
+      acno,
+      pswd,
+      amt 
+     }
+     return this.http.post(environment.apiUrl+"/deposit",data,options)
    }
   Login(acno:any,pswd:any){
-    let accDetails=this.user
-    if(acno in accDetails)
-    {
-      if(pswd == accDetails[acno]["password"]){
-      this.currentUser=accDetails[acno]["uname"]
-      this.currentAcc=acno
-      this.saveDetails()
-       alert("Login Successful")
-       return true
-     
-      }
-      else{
-        alert("Incorrect Password")
-        return false
-      }
-    }
-    else{
-    alert("Invalid User")
-    return false
+  const data={
+   acno,
+   pswd  
   }
+  return this.http.post(environment.apiUrl+"/login",data,options)
+  }
+  deleteAcc(acno:any){
+    return this.http.delete(environment.apiUrl+"/deleteAcc/"+acno,options)
   }
   }
   
